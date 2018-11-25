@@ -1,0 +1,19 @@
+Title:Sub-1 [ get_dir ] DAISEN C-Style for TJ3B  [ Ver.20180802 ]
+CN01:Ball_front
+CN02:Ball_right
+CN03:Ball_back
+CN04:Ball_left
+CN05:Line_front
+CN06:Line_right
+CN07:Line_back
+CN08:Line_left
+CN09:PING_right
+CN10:PING_left
+[0000]:sno:08,cno:07,val:111111-113310-000003,cmt:
+[0001]:sno:31,cno:32,val:010412-000001-000000,cmt:
+[0002]:sno:01,cno:31,val:014000--00180-000000,cmt:
+[0003]:sno:31,cno:31,val:010021-000360-000000,cmt:
+[0004]:sno:02,cno:31,val:016000-000180-000000,cmt:
+[0005]:sno:31,cno:31,val:010022-000360-000000,cmt:
+[0006]:sno:00,cno:02,val:000000-000000-000000,cmt:
+[0007]:sno:10,cno:10,val:000000-000000-000000,cmt:
