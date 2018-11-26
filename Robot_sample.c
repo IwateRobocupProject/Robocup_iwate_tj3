@@ -54,12 +54,12 @@ void user_main(void)
         user_sub_1();
         if (gV[VAR_B] >= 15) {
             gPwm[0] = 0x23 | 0x80;
-            gPwm[1] = 0x23 | 0x80;
+            gPwm[2] = 0x23 | 0x80;
             gPwm[5] = 0x23 | 0x80;
             pwm_out();
         } else if (gV[VAR_B] <= -15) {
             gPwm[0] = 0x23;
-            gPwm[1] = 0x23;
+            gPwm[2] = 0x23;
             gPwm[5] = 0x23;
             pwm_out();
         } else {
