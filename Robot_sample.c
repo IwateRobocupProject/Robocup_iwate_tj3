@@ -50,6 +50,7 @@ void user_sub_2(void)
 void user_main(void)
 {
     gV[VAR_A] = get_dir(0);
+    wait_ms(1000);
     while (TRUE) {
         user_sub_1();
         if (gV[VAR_B] >= 15) {
@@ -75,14 +76,14 @@ void user_main(void)
                 gPwm[5] = 0x00 | 0x80;
                 pwm_out();
             } else if (gV[VAR_G] == gV[VAR_D]) {
-                gPwm[0] = 0x1E;
+                gPwm[0] = 0x32;
                 gPwm[2] = 0x1E;
                 gPwm[5] = 0x50 | 0x80;
                 pwm_out();
             } else if (gV[VAR_G] == gV[VAR_E]) {
-                gPwm[0] = 0x50;
-                gPwm[2] = 0x50 | 0x80;
-                gPwm[5] = 0x00 | 0x80;
+                gPwm[0] = 0x32;
+                gPwm[2] = 0x28;
+                gPwm[5] = 0x5A | 0x80;
                 pwm_out();
             } else if (gV[VAR_G] == gV[VAR_F]) {
                 gPwm[0] = 0x1E | 0x80;
