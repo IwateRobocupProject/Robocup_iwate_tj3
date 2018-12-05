@@ -6,9 +6,49 @@
 //--------------------------------------------------------------------------------
 // Functions
 //--------------------------------------------------------------------------------
+void user_sub_3(void);
 void user_sub_1(void);
 void user_sub_2(void);
 void user_main(void);
+//--------------------------------------------------------------------------------
+// Program Name : line.C
+//--------------------------------------------------------------------------------
+void user_sub_3(void)
+{
+    if (gAD[CN5] > 613) {
+        clr_timer(0);
+        while (get_timer(T1) < 200L) {
+            gPwm[0] = 0x50;
+            gPwm[2] = 0x50 | 0x80;
+            gPwm[5] = 0x00 | 0x80;
+            pwm_out();
+        }
+    } else if (gAD[CN6] > 613) {
+        clr_timer(0);
+        while (get_timer(T1) < 200L) {
+            gPwm[0] = 0x1E | 0x80;
+            gPwm[2] = 0x1E | 0x80;
+            gPwm[5] = 0x50;
+            pwm_out();
+        }
+    } else if (gAD[CN7] > 613) {
+        clr_timer(0);
+        while (get_timer(T1) < 200L) {
+            gPwm[0] = 0x50 | 0x80;
+            gPwm[2] = 0x50;
+            gPwm[5] = 0x00 | 0x80;
+            pwm_out();
+        }
+    } else if (gAD[CN8] > 613) {
+        clr_timer(0);
+        while (get_timer(T1) < 200L) {
+            gPwm[0] = 0x1E;
+            gPwm[2] = 0x1E;
+            gPwm[5] = 0x50 | 0x80;
+            pwm_out();
+        }
+    }
+}
 //--------------------------------------------------------------------------------
 // Program Name : get_dir.C
 //--------------------------------------------------------------------------------
@@ -51,6 +91,7 @@ void user_main(void)
 {
     gV[VAR_A] = get_dir(0);
     while (TRUE) {
+        user_sub_3();
         user_sub_1();
         if (gV[VAR_B] >= 15) {
             gPwm[0] = 0x23 | 0x80;
