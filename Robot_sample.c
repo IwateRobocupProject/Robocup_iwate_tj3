@@ -15,7 +15,7 @@ void user_main(void);
 //--------------------------------------------------------------------------------
 void user_sub_3(void)
 {
-    if (gAD[CN5] > 613) {
+    if (gAD[CN5] > 593) {
         clr_timer(0);
         while (get_timer(T1) < 200L) {
             gPwm[0] = 0x50;
@@ -23,7 +23,7 @@ void user_sub_3(void)
             gPwm[5] = 0x00 | 0x80;
             pwm_out();
         }
-    } else if (gAD[CN6] > 613) {
+    } else if (gAD[CN6] > 593) {
         clr_timer(0);
         while (get_timer(T1) < 200L) {
             gPwm[0] = 0x1E | 0x80;
@@ -31,7 +31,7 @@ void user_sub_3(void)
             gPwm[5] = 0x50;
             pwm_out();
         }
-    } else if (gAD[CN7] > 613) {
+    } else if (gAD[CN7] > 593) {
         clr_timer(0);
         while (get_timer(T1) < 200L) {
             gPwm[0] = 0x50 | 0x80;
@@ -39,7 +39,7 @@ void user_sub_3(void)
             gPwm[5] = 0x00 | 0x80;
             pwm_out();
         }
-    } else if (gAD[CN8] > 613) {
+    } else if (gAD[CN8] > 593) {
         clr_timer(0);
         while (get_timer(T1) < 200L) {
             gPwm[0] = 0x1E;
@@ -90,15 +90,19 @@ void user_sub_2(void)
 void user_main(void)
 {
     gV[VAR_A] = get_dir(0);
+    gPwm[0] = 0x64 | 0x80;
+    gPwm[2] = 0x64;
+    pwm_out();
+    wait_ms(200);
     while (TRUE) {
         user_sub_3();
         user_sub_1();
-        if (gV[VAR_B] >= 15) {
-            gPwm[0] = 0x23 | 0x80;
-            gPwm[2] = 0x23 | 0x80;
-            gPwm[5] = 0x23 | 0x80;
+        if (gV[VAR_B] >= 12) {
+            gPwm[0] = 0x26 | 0x80;
+            gPwm[2] = 0x26 | 0x80;
+            gPwm[5] = 0x26 | 0x80;
             pwm_out();
-        } else if (gV[VAR_B] <= -15) {
+        } else if (gV[VAR_B] <= -18) {
             gPwm[0] = 0x23;
             gPwm[2] = 0x23;
             gPwm[5] = 0x23;
@@ -106,52 +110,78 @@ void user_main(void)
         } else {
             user_sub_2();
             if (gV[VAR_G] <= 100) {
-                gPwm[0] = 0x00 | 0x80;
-                gPwm[2] = 0x00 | 0x80;
+                gPwm[0] = 0x50;
+                gPwm[2] = 0x50 | 0x80;
                 gPwm[5] = 0x00 | 0x80;
                 pwm_out();
             } else if (gV[VAR_G] == gV[VAR_C]) {
-                gPwm[0] = 0x50 | 0x80;
-                gPwm[2] = 0x50;
-                gPwm[5] = 0x00 | 0x80;
-                pwm_out();
                 if (gAD[CN2] > gAD[CN4]) {
                     gPwm[0] = 0x00 | 0x80;
-                    gPwm[2] = 0x50;
-                    gPwm[5] = 0x3C | 0x80;
+                    gPwm[2] = 0x3C;
+                    gPwm[5] = 0x3F | 0x80;
                     pwm_out();
                 } else {
-                    gPwm[0] = 0x50 | 0x80;
+                    gPwm[0] = 0x3C | 0x80;
                     gPwm[2] = 0x00 | 0x80;
-                    gPwm[5] = 0x3C;
+                    gPwm[5] = 0x3F;
                     pwm_out();
                 }
             } else if (gV[VAR_G] == gV[VAR_D]) {
-                gPwm[0] = 0x50;
-                gPwm[2] = 0x00 | 0x80;
-                gPwm[5] = 0x50 | 0x80;
-                pwm_out();
-            } else if (gV[VAR_G] == gV[VAR_E]) {
-                gPwm[0] = 0x00 | 0x80;
-                gPwm[2] = 0x50 | 0x80;
-                gPwm[5] = 0x50;
-                pwm_out();
-                if (gAD[CN2] > gAD[CN4]) {
-                    gPwm[0] = 0x50;
+                if (gAD[CN1] > gAD[CN3]) {
+                    gPwm[0] = 0x3C;
                     gPwm[2] = 0x00 | 0x80;
-                    gPwm[5] = 0x3C | 0x80;
+                    gPwm[5] = 0x3F | 0x80;
                     pwm_out();
                 } else {
+                    gPwm[0] = 0x00;
+                    gPwm[2] = 0x3C | 0x80;
+                    gPwm[5] = 0x3F;
+                    pwm_out();
+                    user_sub_3();
+                    gPwm[0] = 0x3C;
+                    gPwm[2] = 0x00 | 0x80;
+                    gPwm[5] = 0x3F | 0x80;
+                    pwm_out();
+                }
+            } else if (gV[VAR_G] == gV[VAR_E]) {
+                if (gAD[CN2] > gAD[CN4]) {
                     gPwm[0] = 0x00 | 0x80;
-                    gPwm[2] = 0x50 | 0x80;
-                    gPwm[5] = 0x50;
+                    gPwm[2] = 0x3C | 0x80;
+                    gPwm[5] = 0x3F;
+                    pwm_out();
+                    user_sub_3();
+                    gPwm[0] = 0x3C;
+                    gPwm[2] = 0x3C | 0x80;
+                    gPwm[5] = 0x00 | 0x80;
+                    pwm_out();
+                } else {
+                    gPwm[0] = 0x3C;
+                    gPwm[2] = 0x00 | 0x80;
+                    gPwm[5] = 0x3F | 0x80;
+                    pwm_out();
+                    user_sub_3();
+                    gPwm[0] = 0x3C;
+                    gPwm[2] = 0x3C | 0x80;
+                    gPwm[5] = 0x00 | 0x80;
                     pwm_out();
                 }
             } else if (gV[VAR_G] == gV[VAR_F]) {
-                gPwm[0] = 0x00 | 0x80;
-                gPwm[2] = 0x50 | 0x80;
-                gPwm[5] = 0x50;
-                pwm_out();
+                if (gAD[CN1] > gAD[CN3]) {
+                    gPwm[0] = 0x00 | 0x80;
+                    gPwm[2] = 0x3C | 0x80;
+                    gPwm[5] = 0x3F;
+                    pwm_out();
+                } else {
+                    gPwm[0] = 0x3C;
+                    gPwm[2] = 0x00 | 0x80;
+                    gPwm[5] = 0x3F | 0x80;
+                    pwm_out();
+                    user_sub_3();
+                    gPwm[0] = 0x00;
+                    gPwm[2] = 0x3C | 0x80;
+                    gPwm[5] = 0x3F;
+                    pwm_out();
+                }
             }
         }
     }
