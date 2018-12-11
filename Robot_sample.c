@@ -15,7 +15,7 @@ void user_main(void);
 //--------------------------------------------------------------------------------
 void user_sub_3(void)
 {
-    if (gAD[CN5] > 593) {
+    if (gAD[CN5] > 695) {
         clr_timer(0);
         while (get_timer(T1) < 200L) {
             gPwm[0] = 0x50;
@@ -23,7 +23,7 @@ void user_sub_3(void)
             gPwm[5] = 0x00 | 0x80;
             pwm_out();
         }
-    } else if (gAD[CN6] > 593) {
+    } else if (gAD[CN6] > 695) {
         clr_timer(0);
         while (get_timer(T1) < 200L) {
             gPwm[0] = 0x1E | 0x80;
@@ -31,7 +31,7 @@ void user_sub_3(void)
             gPwm[5] = 0x50;
             pwm_out();
         }
-    } else if (gAD[CN7] > 593) {
+    } else if (gAD[CN7] > 695) {
         clr_timer(0);
         while (get_timer(T1) < 200L) {
             gPwm[0] = 0x50 | 0x80;
@@ -39,7 +39,7 @@ void user_sub_3(void)
             gPwm[5] = 0x00 | 0x80;
             pwm_out();
         }
-    } else if (gAD[CN8] > 593) {
+    } else if (gAD[CN8] > 695) {
         clr_timer(0);
         while (get_timer(T1) < 200L) {
             gPwm[0] = 0x1E;
