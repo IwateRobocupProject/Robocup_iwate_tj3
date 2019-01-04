@@ -16,14 +16,14 @@ void user_main(void);
 //--------------------------------------------------------------------------------
 void user_sub_3(void)
 {
-    if (gAD[CN5] > 480) {
-        while (gAD[CN5] > 480) {
-            if (gAD[CN6] > 480) {
+    if (gAD[CN5] > 460) {
+        while (gAD[CN5] > 460) {
+            if (gAD[CN6] > 460) {
                 gPwm[0] = 0x00 | 0x80;
                 gPwm[2] = 0x50 | 0x80;
                 gPwm[4] = 0x1E;
                 pwm_out();
-            } else if (gAD[CN8] > 480) {
+            } else if (gAD[CN8] > 460) {
                 gPwm[0] = 0x50;
                 gPwm[2] = 0x00 | 0x80;
                 gPwm[4] = 0x1E | 0x80;
@@ -39,14 +39,14 @@ void user_sub_3(void)
         gPwm[2] = 0x50 | 0x80;
         pwm_out();
         wait_ms(100);
-    } else if (gAD[CN6] > 480) {
-        while (gAD[CN6] > 480) {
-            if (gAD[CN5] > 480) {
+    } else if (gAD[CN6] > 460) {
+        while (gAD[CN6] > 460) {
+            if (gAD[CN5] > 460) {
                 gPwm[0] = 0x00 | 0x80;
                 gPwm[2] = 0x50 | 0x80;
                 gPwm[5] = 0x1E;
                 pwm_out();
-            } else if (gAD[CN7] > 480) {
+            } else if (gAD[CN7] > 460) {
                 gPwm[0] = 0x50;
                 gPwm[2] = 0x00 | 0x80;
                 gPwm[5] = 0x1E;
@@ -63,14 +63,14 @@ void user_sub_3(void)
         gPwm[5] = 0x50;
         pwm_out();
         wait_ms(100);
-    } else if (gAD[CN7] > 480) {
-        while (gAD[CN7] > 480) {
-            if (gAD[CN6] > 480) {
+    } else if (gAD[CN7] > 460) {
+        while (gAD[CN7] > 460) {
+            if (gAD[CN6] > 460) {
                 gPwm[0] = 0x50 | 0x80;
                 gPwm[2] = 0x00 | 0x80;
                 gPwm[5] = 0x1E;
                 pwm_out();
-            } else if (gAD[CN8] > 480) {
+            } else if (gAD[CN8] > 460) {
                 gPwm[0] = 0x00 | 0x80;
                 gPwm[2] = 0x50;
                 gPwm[5] = 0x1E | 0x80;
@@ -87,14 +87,14 @@ void user_sub_3(void)
         gPwm[5] = 0x00 | 0x80;
         pwm_out();
         wait_ms(100);
-    } else if (gAD[CN8] > 480) {
-        while (gAD[CN8] > 480) {
-            if (gAD[CN5] > 480) {
+    } else if (gAD[CN8] > 460) {
+        while (gAD[CN8] > 460) {
+            if (gAD[CN5] > 460) {
                 gPwm[0] = 0x50;
                 gPwm[2] = 0x00 | 0x80;
                 gPwm[5] = 0x1E | 0x80;
                 pwm_out();
-            } else if (gAD[CN7] > 480) {
+            } else if (gAD[CN7] > 460) {
                 gPwm[0] = 0x00 | 0x80;
                 gPwm[2] = 0x50;
                 gPwm[5] = 0x1E | 0x80;
@@ -215,24 +215,10 @@ void user_main(void)
                 pwm_out();
             } else if (gV[VAR_G] == gV[VAR_C]) {
                 if (gAD[CN1] > 767) {
-                    if (gV[VAR_G] == 1) {
-                        gPwm[0] = 0x00 | 0x80;
-                        gPwm[2] = 0x50;
-                        gPwm[5] = 0x21 | 0x80;
-                        pwm_out();
-                        gV[VAR_G] = 0;
-                    } else if (gV[VAR_G] == 2) {
-                        gPwm[0] = 0x50 | 0x80;
-                        gPwm[2] = 0x00 | 0x80;
-                        gPwm[5] = 0x21;
-                        pwm_out();
-                        gV[VAR_G] = 0;
-                    } else {
-                        gPwm[0] = 0x50 | 0x80;
-                        gPwm[2] = 0x50;
-                        gPwm[5] = 0x00 | 0x80;
-                        pwm_out();
-                    }
+                    gPwm[0] = 0x50 | 0x80;
+                    gPwm[2] = 0x50;
+                    gPwm[5] = 0x00 | 0x80;
+                    pwm_out();
                 } else {
                     if (gAD[CN2] > gAD[CN4]) {
                         gPwm[0] = 0x00 | 0x80;
@@ -253,16 +239,16 @@ void user_main(void)
                     gPwm[5] = 0x53 | 0x80;
                     pwm_out();
                 } else {
-                    gPwm[0] = 0x50;
-                    gPwm[2] = 0x50 | 0x80;
+                    gPwm[0] = 0x46;
+                    gPwm[2] = 0x46 | 0x80;
                     gPwm[5] = 0x00 | 0x80;
                     pwm_out();
                     user_sub_3();
                 }
             } else if (gV[VAR_G] == gV[VAR_E]) {
                 if (gAD[CN3] < 613) {
-                    gPwm[0] = 0x50;
-                    gPwm[2] = 0x50 | 0x80;
+                    gPwm[0] = 0x46;
+                    gPwm[2] = 0x46 | 0x80;
                     gPwm[5] = 0x00 | 0x80;
                     pwm_out();
                 } else if (gAD[CN2] > gAD[CN4]) {
@@ -283,8 +269,8 @@ void user_main(void)
                     gPwm[5] = 0x53;
                     pwm_out();
                 } else {
-                    gPwm[0] = 0x50;
-                    gPwm[2] = 0x50 | 0x80;
+                    gPwm[0] = 0x46;
+                    gPwm[2] = 0x46 | 0x80;
                     gPwm[5] = 0x00 | 0x80;
                     pwm_out();
                 }
