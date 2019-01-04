@@ -8,7 +8,6 @@
 //--------------------------------------------------------------------------------
 void user_sub_3(void);
 void user_sub_1(void);
-void user_sub_4(void);
 void user_sub_2(void);
 void user_main(void);
 //--------------------------------------------------------------------------------
@@ -127,26 +126,6 @@ void user_sub_1(void)
     return;
 }
 //--------------------------------------------------------------------------------
-// Program Name : SubFile-04.C
-//--------------------------------------------------------------------------------
-void user_sub_4(void)
-{
-    gV[VAR_D] = get_ping(CN9);
-    gV[VAR_E] = get_ping(CN10);
-    gV[VAR_C] = gV[VAR_D] + gV[VAR_E];
-    if (gV[VAR_C] == 164) {
-        if (get_ping(CN9) > gAD[CN10]) {
-            if (get_ping(CN10) < 600) {
-                gV[VAR_G] = 1;
-            }
-        } else {
-            if (get_ping(CN9) < 600) {
-                gV[VAR_G] = 2;
-            }
-        }
-    }
-}
-//--------------------------------------------------------------------------------
 // Program Name : ball_get_max.C
 //--------------------------------------------------------------------------------
 void user_sub_2(void)
@@ -181,7 +160,6 @@ void user_main(void)
     while (TRUE) {
         user_sub_3();
         user_sub_1();
-        user_sub_4();
         if (gV[VAR_B] >= 20) {
             if (gV[VAR_B] >= 40) {
                 gPwm[0] = 0x23 | 0x80;
@@ -215,24 +193,10 @@ void user_main(void)
                 pwm_out();
             } else if (gV[VAR_G] == gV[VAR_C]) {
                 if (gAD[CN1] > 767) {
-                    if (gV[VAR_G] == 1) {
-                        gPwm[0] = 0x00 | 0x80;
-                        gPwm[2] = 0x50;
-                        gPwm[5] = 0x21 | 0x80;
-                        pwm_out();
-                        gV[VAR_G] = 0;
-                    } else if (gV[VAR_G] == 2) {
-                        gPwm[0] = 0x50 | 0x80;
-                        gPwm[2] = 0x00 | 0x80;
-                        gPwm[5] = 0x21;
-                        pwm_out();
-                        gV[VAR_G] = 0;
-                    } else {
-                        gPwm[0] = 0x50 | 0x80;
-                        gPwm[2] = 0x50;
-                        gPwm[5] = 0x00 | 0x80;
-                        pwm_out();
-                    }
+                    gPwm[0] = 0x50 | 0x80;
+                    gPwm[2] = 0x50;
+                    gPwm[5] = 0x00 | 0x80;
+                    pwm_out();
                 } else {
                     if (gAD[CN2] > gAD[CN4]) {
                         gPwm[0] = 0x00 | 0x80;
